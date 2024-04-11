@@ -106,8 +106,8 @@ with st.sidebar:
     file = st.file_uploader("Upload a .txt .pdf or .docs file", type=["pdf","txt","docx"])
     openai_key = st.text_input("Please put your OpenAI_key")
     button = st.button("save key")
-    github_url = st.text("")
-    app_url = st.text("")
+    github_url = st.text("https://github.com/hizoo66/FULLSTACK-GPT/blob/main/pages/01_DocumentGPT.py")
+    app_url = st.text("https://fullstack-gpt-8ewig3twyrqpwf5kis6bet.streamlit.app/DocumentGPT")
     maker = st.text("made by Hizoo")
 
     if button:
