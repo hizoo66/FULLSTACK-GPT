@@ -18,7 +18,6 @@ llm = ChatOpenAI(
     temperature=0.1,
     model="gpt-3.5-turbo-1106",
     streaming=True,
-    callbacks=[StreamingStdOutCallbackHandler()],
 )
 
 with st.sidebar:
@@ -44,11 +43,9 @@ with st.sidebar:
         st.session_state["api_key"] = api_key
         st.rerun()
 
-    st.markdown(
-        """
-        
-        """
-    )
+    github_url = st.text("https://github.com/hizoo66/FULLSTACK-GPT/blob/main/pages/01_DocumentGPT.py")
+    app_url = st.text("https://fullstack-gpt-8ewig3twyrqpwf5kis6bet.streamlit.app/DocumentGPT")
+    maker = st.text("made by Hizoo")
 
 if not api_key:
     st.warning("APIKEY를 입력해주세요!")
@@ -243,3 +240,8 @@ if quiz_subject:
             if correct_count == generated_quiz_count:
                 for _ in range(3):
                     st.balloons()
+
+with st.sidebar:
+    github_url = st.text("https://github.com/hizoo66/FULLSTACK-GPT/blob/main/pages/02_QuizGPT.py")
+    app_url = st.text("https://fullstack-gpt-8ewig3twyrqpwf5kis6bet.streamlit.app/QuizGPT")
+    maker = st.text("made by Hizoo")

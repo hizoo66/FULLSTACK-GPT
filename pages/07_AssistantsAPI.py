@@ -33,12 +33,11 @@ def main():
         if api_key != st.session_state["api_key"]:
             st.session_state["api_key"] = api_key
             st.rerun()
-
-        st.markdown(
-            """
-            
-            """
-        )
+    
+        github_url = st.text("https://github.com/hizoo66/FULLSTACK-GPT/blob/main/pages/07_AssistantsAPI.py")
+        app_url = st.text("https://fullstack-gpt-8ewig3twyrqpwf5kis6bet.streamlit.app/AssistantsAPI")
+        maker = st.text("made by Hizoo")
+     
 
         log_box = st.expander(":blue[Assistant API Log]", expanded=True)
 

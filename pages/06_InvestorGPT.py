@@ -11,6 +11,7 @@ from langchain.prompts import PromptTemplate
 from langchain.document_loaders import WebBaseLoader
 from langchain.schema.runnable import RunnablePassthrough
 from datetime import datetime
+import streamlit as st
 
 llm = ChatOpenAI(
     temperature=0.1,
@@ -130,3 +131,8 @@ def agent_invoke(input):
 query = "Research about the XZ backdoor"
 
 agent_invoke(query)
+
+with st.sidebar:
+    github_url = st.text("https://github.com/hizoo66/FULLSTACK-GPT/blob/main/pages/06_InvestorGPT.py")
+    app_url = st.text("https://fullstack-gpt-8ewig3twyrqpwf5kis6bet.streamlit.app/InvestorGPT")
+    maker = st.text("made by Hizoo")

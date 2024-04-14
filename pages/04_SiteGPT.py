@@ -175,3 +175,9 @@ if url:
             )
             result = chain.invoke(query)
             st.markdown(result.content.replace("$", "\$"))
+
+
+with st.sidebar:
+    github_url = st.text("https://github.com/hizoo66/FULLSTACK-GPT/blob/main/pages/04_SiteGPT.py")
+    app_url = st.text("https://fullstack-gpt-8ewig3twyrqpwf5kis6bet.streamlit.app/SiteGPT")
+    maker = st.text("made by Hizoo")
