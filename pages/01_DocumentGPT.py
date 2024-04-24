@@ -116,6 +116,7 @@ with st.sidebar:
         if openai_key == "":
             st.warning("CAN'T RECOGNIZED OPEN_API_KEY")
 
+
 if openai_key:
     llm = ChatOpenAI(
         temperature=0.1,
