@@ -24,8 +24,10 @@ with st.sidebar:
     if OPENAI_API_KEY:
         openai.api_key = OPENAI_API_KEY
 
+
 llm = ChatOpenAI(
     temperature=0.1,
+    openai_api_key=OPENAI_API_KEY,
 )
 
 
@@ -116,3 +118,9 @@ if file:
         send_message(response.content, "ai")
 else:
     st.session_state["messages"] = []
+
+
+with st.sidebar:
+    st.write(
+        "https://github.com/hizoo66/FULLSTACK-GPT/commit/6ea1d648e6ee2a30c4b128fa191bee02c67218d1"
+    )
