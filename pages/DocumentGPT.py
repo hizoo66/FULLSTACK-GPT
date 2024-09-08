@@ -1,4 +1,5 @@
 import streamlit as st
+import os
 import openai
 from langchain.document_loaders import UnstructuredFileLoader
 from langchain.text_splitter import CharacterTextSplitter
@@ -22,28 +23,37 @@ with st.sidebar:
     st.title("OpenAI API Key")
     OPENAI_API_KEY = st.text_input("Write your API key", type="password")
     if OPENAI_API_KEY:
-        openai.api_key = OPENAI_API_KEY
+        openai_api_key = OPENAI_API_KEY
 
+CACHE_DIR = "./.cache/files"
+EMBEDDING_CACHE_DIR = "./.cache/embeddings"
 
 llm = ChatOpenAI(
     temperature=0.1,
-    openai_api_key=OPENAI_API_KEY,
+    openai_api_key=openai_api_key,
 )
+
+
+def create_dir(directory):
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
 
 @st.cache_data(show_spinner="Embedding file.....")
 def embed_file(file):
     file_content = file.read()
-    file_path = f"./.cache/files/{file.name}"
+    create_dir(CACHE_DIR)
+    create_dir(EMBEDDING_CACHE_DIR)
+    file_path = os.path.join(CACHE_DIR, file.name)
     with open(file_path, "wb") as f:
         f.write(file_content)
-    cache_dir = LocalFileStore(f"./.cache/embeddings/{file.name}")
+    cache_dir = LocalFileStore(os.path.join(EMBEDDING_CACHE_DIR, file.name))
     splitter = CharacterTextSplitter.from_tiktoken_encoder(
         separator="\n",
         chunk_size=600,
         chunk_overlap=100,
     )
-    loader = UnstructuredFileLoader(f"./files/{file.name}")
+    loader = UnstructuredFileLoader(file_path)
     docs = loader.load_and_split(text_splitter=splitter)
     embeddings = OpenAIEmbeddings()
     cached_embeddings = CacheBackedEmbeddings.from_bytes_store(embeddings, cache_dir)
