@@ -189,3 +189,6 @@ else:
                 retry = st.button("Retry the quiz")
                 if retry:
                     st.experimental_rerun()
+
+with st.sidebar:
+    st.write("https://github.com/hizoo66/FULLSTACK-GPT/blob/master/pages/QuizGPT.py")
