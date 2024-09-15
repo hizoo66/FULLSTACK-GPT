@@ -84,3 +84,9 @@ for msg in st.session_state.messages:
         st.write(f"**You**: {msg['content']}")
     else:
         st.write(f"**Assistant**: {msg['content']}")
+
+
+with st.sidebar:
+    st.write(
+        "https://github.com/hizoo66/FULLSTACK-GPT/blob/master/pages/InvestorGPT.py"
+    )
